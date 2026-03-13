@@ -138,6 +138,7 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+        .status-waiting_for_agent { background: #1a1a2e; color: #7c8db5; }
         .status-new { background: #1e3a5f; color: #38bdf8; }
         .status-profile_sent { background: #422006; color: #fbbf24; }
         .status-eligible { background: #052e16; color: #4ade80; }
@@ -196,21 +197,25 @@
     <div class="header">
         <h1>Apartment Search Dashboard</h1>
         <div class="subtitle">Noam and Liel | NYC Apartment Hunt</div>
-        <div class="subtitle" style="margin-top: 4px;">Last updated: March 14, 2026 12:00 AM</div>
+        <div class="subtitle" style="margin-top: 4px;">Last updated: March 14, 2026 1:35 AM</div>
     </div>
 
     <div class="stats">
         <div class="stat-card">
-            <div class="number">3</div>
+            <div class="number">4</div>
             <div class="label">Total</div>
         </div>
-        <div class="stat-card visit">
+        <div class="stat-card eligible">
             <div class="number">1</div>
-            <div class="label">Visit Scheduled</div>
+            <div class="label">Eligible</div>
         </div>
         <div class="stat-card pending">
             <div class="number">2</div>
             <div class="label">Pending</div>
+        </div>
+        <div class="stat-card" style="opacity: 0.7;">
+            <div class="number" style="color: #7c8db5;">1</div>
+            <div class="label">Waiting for Agent</div>
         </div>
         <div class="stat-card rejected">
             <div class="number">0</div>
@@ -274,6 +279,24 @@
                 <div class="card-agent">Agent: Olivia L | Sky High Realty NYC</div>
                 <span class="status-badge status-profile_sent">Profile Sent</span>
                 <div class="card-note">Re-engaged. Asked if Insurent accepted. Interested in: 637 Franklin ($3K), 1534 Putnam ($3.2K), 1584 Fulton ($2,708 net). 11 units available.</div>
+            </div>
+        </div>
+
+        <!-- Card 4: 240 West 104th Street #21A — WAITING FOR AGENT -->
+        <div class="card">
+            <div class="card-image">🏢</div>
+            <div class="card-body">
+                <div class="card-address">240 West 104th Street #21A</div>
+                <div class="card-neighborhood">Upper West Side</div>
+                <div class="card-details">
+                    <span class="card-price">$2,800/mo</span>
+                    <span class="card-beds">1 Bed</span>
+                    <span class="card-baths">1 Bath</span>
+                </div>
+                <div class="card-agent">Agent: Ezamina Ramusevic | Sovereign Associates</div>
+                <span class="status-badge status-waiting_for_agent">Waiting for Agent</span>
+                <div class="card-note">StreetEasy inquiry sent March 13. Waiting for agent to respond.</div>
+                <a class="card-link" href="https://streeteasy.com/rental/4980608" target="_blank">View on StreetEasy</a>
             </div>
         </div>
 
