@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="900">
+    <title>Apartment Search Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 24px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #1e293b;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        .stats {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 16px 24px;
+            text-align: center;
+            min-width: 140px;
+        }
+        .stat-card .number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+        .stat-card .label {
+            font-size: 12px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+        .stat-card.visit .number { color: #34d399; }
+        .stat-card.eligible .number { color: #4ade80; }
+        .stat-card.pending .number { color: #fbbf24; }
+        .stat-card.rejected .number { color: #f87171; }
+        .apartments {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #1e293b;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: #475569;
+        }
+        .card-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 48px;
+        }
+        .card-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-address {
+            font-size: 18px;
+            font-weight: 600;
+            color: #f8fafc;
+            margin-bottom: 4px;
+        }
+        .card-neighborhood {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+        }
+        .card-details {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            align-items: baseline;
+        }
+        .card-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #38bdf8;
+        }
+        .card-beds, .card-baths {
+            color: #cbd5e1;
+        }
+        .card-agent {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #334155;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .status-new { background: #1e3a5f; color: #38bdf8; }
+        .status-profile_sent { background: #422006; color: #fbbf24; }
+        .status-eligible { background: #052e16; color: #4ade80; }
+        .status-asked_responsible_party { background: #451a03; color: #fb923c; }
+        .status-scheduling { background: #2e1065; color: #a78bfa; }
+        .status-liel_responded { background: #1e1b4b; color: #818cf8; }
+        .status-visit_scheduled { background: #022c22; color: #34d399; }
+        .status-rejected { background: #1c1917; color: #a8a29e; }
+        .status-no_response { background: #1e293b; color: #64748b; }
+        .card-link {
+            display: block;
+            margin-top: auto;
+            padding: 10px 0;
+            color: #38bdf8;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+            background: #1e3a5f;
+            border-radius: 10px;
+            transition: background 0.2s;
+        }
+        .card-link:hover { background: #264b73; text-decoration: none; }
+        .card-note {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #94a3b8;
+            font-style: italic;
+        }
+        .card-visit {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #022c22;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #34d399;
+            font-weight: 600;
+        }
+        .card-visit .visit-details {
+            font-weight: 400;
+            font-size: 12px;
+            color: #6ee7b7;
+            margin-top: 4px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #1e293b;
+            color: #475569;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Apartment Search Dashboard</h1>
+        <div class="subtitle">Noam and Liel | NYC Apartment Hunt</div>
+        <div class="subtitle" style="margin-top: 4px;">Last updated: March 14, 2026 12:00 AM</div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">
+            <div class="number">2</div>
+            <div class="label">Total</div>
+        </div>
+        <div class="stat-card visit">
+            <div class="number">1</div>
+            <div class="label">Visit Scheduled</div>
+        </div>
+        <div class="stat-card pending">
+            <div class="number">1</div>
+            <div class="label">Pending</div>
+        </div>
+        <div class="stat-card rejected">
+            <div class="number">0</div>
+            <div class="label">Rejected</div>
+        </div>
+    </div>
+
+    <div class="apartments" id="apartmentGrid">
+
+        <!-- Card 1: 11 Herkimer Street #6D — VISIT SCHEDULED -->
+        <div class="card">
+            <div class="card-image">🏠</div>
+            <div class="card-body">
+                <div class="card-address">11 Herkimer Street #6D</div>
+                <div class="card-neighborhood">Bedford-Stuyvesant</div>
+                <div class="card-details">
+                    <span class="card-price">$3,750/mo</span>
+                    <span class="card-beds">1 Bed</span>
+                    <span class="card-baths">1 Bath</span>
+                </div>
+                <div class="card-agent">Agent: Mendel Paltiel | CITI CUBES INC</div>
+                <span class="status-badge status-visit_scheduled">Visit Scheduled</span>
+                <div class="card-visit">
+                    Sunday, March 15 at 2:00 PM EST
+                    <div class="visit-details">Mendel confirmed. Insurent required. Proof of funds discussed.</div>
+                </div>
+                <a class="card-link" href="https://streeteasy.com/building/11-herkimer/6d" target="_blank">View on StreetEasy</a>
+            </div>
+        </div>
+
+        <!-- Card 2: 88 Fulton Street #703 — PROFILE SENT -->
+        <div class="card">
+            <div class="card-image">🏢</div>
+            <div class="card-body">
+                <div class="card-address">88 Fulton Street #703</div>
+                <div class="card-neighborhood">Fulton/Seaport</div>
+                <div class="card-details">
+                    <span class="card-price">$3,700/mo</span>
+                    <span class="card-beds">1 Bed</span>
+                    <span class="card-baths">1 Bath</span>
+                </div>
+                <div class="card-agent">Agent: Amel Lukovic | Compass</div>
+                <span class="status-badge status-profile_sent">Profile Sent</span>
+                <div class="card-note">Profile sent March 13. Waiting for Amel to confirm eligibility. Calendly link available once confirmed.</div>
+                <a class="card-link" href="https://streeteasy.com/rental/4970215" target="_blank">View on StreetEasy</a>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="footer">
+        Auto-refreshes every 15 minutes | Powered by Claude
+    </div>
+</body>
+</html>
