@@ -89,7 +89,6 @@
             overflow: hidden;
             transition: transform 0.2s, opacity 0.3s;
             border: 1px solid #334155;
-            border-left: 4px solid #334155;
             display: flex;
             flex-direction: column;
         }
@@ -97,12 +96,6 @@
             transform: translateY(-2px);
             border-color: #475569;
         }
-        /* Status color strips */
-        .card[data-status="visit_scheduled"],
-        .card[data-status="eligible"] { border-left-color: #34d399; }
-        .card[data-status="profile_sent"] { border-left-color: #fbbf24; }
-        .card[data-status="new"] { border-left-color: #38bdf8; }
-        .card[data-status="waiting_for_agent"] { border-left-color: #f97316; }
         .card.hidden {
             display: none;
         }
@@ -137,6 +130,39 @@
             opacity: 0.15;
             z-index: 1;
         }
+        /* Status dot on image */
+        .status-dot {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(4px);
+            z-index: 3;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .status-dot::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .status-dot.dot-green { color: #6ee7b7; }
+        .status-dot.dot-green::before { background: #34d399; box-shadow: 0 0 6px #34d39980; }
+        .status-dot.dot-yellow { color: #fde68a; }
+        .status-dot.dot-yellow::before { background: #fbbf24; box-shadow: 0 0 6px #fbbf2480; }
+        .status-dot.dot-blue { color: #7dd3fc; }
+        .status-dot.dot-blue::before { background: #38bdf8; box-shadow: 0 0 6px #38bdf880; }
+        .status-dot.dot-orange { color: #fdba74; }
+        .status-dot.dot-orange::before { background: #f97316; box-shadow: 0 0 6px #f9731680; }
         /* Neighborhood gradient fallbacks */
         .img-bedsty { background: linear-gradient(135deg, #92400e 0%, #b45309 40%, #d97706 100%); }
         .img-downtown { background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 40%, #0ea5e9 100%); }
@@ -371,6 +397,7 @@
         <!-- Card 1: 11 Herkimer Street #6D — VISIT SCHEDULED -->
         <div class="card" data-status="visit_scheduled">
             <div class="card-image" style="background-image: url('11-herkimer.webp');">
+                <span class="status-dot dot-green">Confirmed</span>
                 <span class="neighborhood-label">Bedford-Stuyvesant</span>
             </div>
             <div class="card-body">
@@ -396,6 +423,7 @@
         <!-- Card 2: 88 Fulton Street #703 — PROFILE SENT -->
         <div class="card" data-status="profile_sent">
             <div class="card-image" style="background-image: url('88-fulton.webp');">
+                <span class="status-dot dot-yellow">Pending</span>
                 <span class="neighborhood-label">Fulton / Seaport</span>
             </div>
             <div class="card-body">
@@ -421,6 +449,7 @@
         <!-- Card 3: 240 West 104th Street #21A — NEW (Agent replied, profile draft pending) -->
         <div class="card" data-status="new">
             <div class="card-image" style="background-image: url('240-w-104th.webp');">
+                <span class="status-dot dot-blue">Replied</span>
                 <span class="neighborhood-label">Upper West Side</span>
             </div>
             <div class="card-body">
@@ -443,6 +472,7 @@
         <!-- Card 4: 250 West 105th Street #6F — PROFILE SENT -->
         <div class="card" data-status="profile_sent">
             <div class="card-image" style="background-image: url('250-w-105th.webp');">
+                <span class="status-dot dot-yellow">Pending</span>
                 <span class="neighborhood-label">Upper West Side</span>
             </div>
             <div class="card-body">
