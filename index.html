@@ -470,12 +470,12 @@
     <div class="header">
         <h1>Apartment Search</h1>
         <div class="subtitle">Noam and Liel | NYC</div>
-        <div class="timestamp">Updated March 15, 2026 7:30 PM</div>
+        <div class="timestamp">Updated March 15, 2026 10:50 PM</div>
     </div>
 
     <div class="segmented-control" id="filterBar">
         <button class="seg-btn active" data-filter="all" onclick="filterCards('all', this)">
-            All <span class="seg-badge">6</span>
+            All <span class="seg-badge">7</span>
         </button>
         <button class="seg-btn" data-filter="visit" onclick="filterCards('visit', this)">
             Visit <span class="seg-badge">1</span>
@@ -484,7 +484,7 @@
             Pending <span class="seg-badge">5</span>
         </button>
         <button class="seg-btn" data-filter="waiting_for_agent" onclick="filterCards('waiting_for_agent', this)">
-            Waiting <span class="seg-badge">0</span>
+            Waiting <span class="seg-badge">1</span>
         </button>
         <button class="seg-btn" data-filter="rented" onclick="filterCards('rented', this)">
             Rented <span class="seg-badge">1</span>
@@ -635,6 +635,27 @@
             </div>
         </div>
 
+        <!-- Card: 645 Park Place #4I — WAITING FOR AGENT -->
+        <div class="card" data-status="waiting_for_agent">
+            <div class="card-image img-bedsty">
+                <span class="status-dot dot-orange">Waiting</span>
+                <span class="neighborhood-label">Crown Heights</span>
+            </div>
+            <div class="card-body">
+                <div class="card-address">645 Park Place #4I</div>
+                <div class="card-neighborhood">Crown Heights, Brooklyn</div>
+                <div class="card-details">
+                    <span class="card-price">$3,955/mo</span>
+                    <span class="card-beds">1 Bed</span>
+                    <span class="card-baths">1 Bath</span>
+                </div>
+                <div class="card-agent">
+                    Listed by Nancy Packes Inc.
+                </div>
+                <a class="card-link" href="https://streeteasy.com/rental/4989731" target="_blank">View on StreetEasy</a>
+            </div>
+        </div>
+
     </div>
 
     <!-- RENTED SECTION -->
@@ -698,6 +719,16 @@
                 cards.forEach(function(c) {
                     var s = c.getAttribute('data-status');
                     if (s === 'profile_sent' || s === 'eligible') {
+                        c.classList.remove('hidden');
+                    } else {
+                        c.classList.add('hidden');
+                    }
+                });
+                rentedSection.style.display = 'none';
+            } else if (filter === 'waiting_for_agent') {
+                cards.forEach(function(c) {
+                    var s = c.getAttribute('data-status');
+                    if (s === 'waiting_for_agent') {
                         c.classList.remove('hidden');
                     } else {
                         c.classList.add('hidden');
