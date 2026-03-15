@@ -82,13 +82,15 @@
         }
         .card-image {
             width: 100%;
-            height: 160px;
+            height: 200px;
             display: flex;
             align-items: flex-end;
             justify-content: flex-start;
             padding: 16px;
             position: relative;
             overflow: hidden;
+            background-size: cover;
+            background-position: center;
         }
         .card-image .neighborhood-label {
             font-size: 11px;
@@ -239,7 +241,7 @@
     <div class="header">
         <h1>Apartment Search Dashboard</h1>
         <div class="subtitle">Noam and Liel | NYC Apartment Hunt</div>
-        <div class="subtitle" style="margin-top: 4px;">Last updated: March 15, 2026 1:15 AM</div>
+        <div class="subtitle" style="margin-top: 4px;">Last updated: March 15, 2026 1:20 PM</div>
     </div>
 
     <div class="stats">
@@ -269,9 +271,8 @@
 
         <!-- Card 1: 11 Herkimer Street #6D — VISIT SCHEDULED -->
         <div class="card">
-            <div class="card-image img-bedsty">
+            <div class="card-image" style="background-image: url('11-herkimer.webp');">
                 <span class="neighborhood-label">Bedford-Stuyvesant</span>
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="white"><path d="M12 3L4 9v12h16V9l-8-6zm0 2.236L18 9.67V19H6V9.67l6-4.434zM8 13h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2zM8 16h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
             </div>
             <div class="card-body">
                 <div class="card-address">11 Herkimer Street #6D</div>
@@ -293,9 +294,8 @@
 
         <!-- Card 2: 88 Fulton Street #703 — PROFILE SENT -->
         <div class="card">
-            <div class="card-image img-downtown">
+            <div class="card-image" style="background-image: url('88-fulton.webp');">
                 <span class="neighborhood-label">Fulton / Seaport</span>
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="white"><path d="M3 21h18v-2H3v2zM5 13v6h4v-6H5zm6 0v6h4v-6h-4zm6 0v6h4v-6h-4zM3 9h2V3h4v6h2V3h4v6h2V3h4v6h2v2H3V9z"/></svg>
             </div>
             <div class="card-body">
                 <div class="card-address">88 Fulton Street #703</div>
@@ -334,9 +334,8 @@
 
         <!-- Card 4: 240 West 104th Street #21A — WAITING FOR AGENT -->
         <div class="card">
-            <div class="card-image img-uws">
+            <div class="card-image" style="background-image: url('240-w-104th.webp');">
                 <span class="neighborhood-label">Upper West Side</span>
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="white"><path d="M12 3L4 9v12h16V9l-8-6zm0 2.236L18 9.67V19H6V9.67l6-4.434zM8 13h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2zM8 16h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
             </div>
             <div class="card-body">
                 <div class="card-address">240 West 104th Street #21A</div>
@@ -355,9 +354,8 @@
 
         <!-- Card 5: 250 West 105th Street #6F — PROFILE SENT -->
         <div class="card">
-            <div class="card-image img-uws">
+            <div class="card-image" style="background-image: url('250-w-105th.webp');">
                 <span class="neighborhood-label">Upper West Side</span>
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="white"><path d="M12 3L4 9v12h16V9l-8-6zm0 2.236L18 9.67V19H6V9.67l6-4.434zM8 13h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2zM8 16h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
             </div>
             <div class="card-body">
                 <div class="card-address">250 West 105th Street #6F</div>
@@ -382,9 +380,8 @@
         <div class="apartments" style="max-width: 1200px; margin: 0 auto;">
         <!-- Card 6: 215 West 101st Street #10/C — RENTED -->
         <div class="card">
-            <div class="card-image img-rented">
+            <div class="card-image" style="background-image: url('215-w-101st.webp'); filter: grayscale(0.6);">
                 <span class="neighborhood-label">Manhattan Valley</span>
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="white"><path d="M12 3L4 9v12h16V9l-8-6zm0 2.236L18 9.67V19H6V9.67l6-4.434zM8 13h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2zM8 16h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
             </div>
             <div class="card-body">
                 <div class="card-address">215 West 101st Street #10/C</div>
