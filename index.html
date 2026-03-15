@@ -245,6 +245,19 @@
             transition: background 0.2s;
         }
         .card-link:hover { background: #264b73; }
+        .card-links {
+            display: flex;
+            gap: 8px;
+            margin-top: auto;
+        }
+        .card-links .card-link {
+            flex: 1;
+        }
+        .card-link.calendly-link {
+            background: #065f46;
+            color: #34d399;
+        }
+        .card-link.calendly-link:hover { background: #047857; }
         .card-note {
             margin-top: 8px;
             font-size: 11px;
@@ -385,7 +398,10 @@
                 </div>
                 <span class="status-badge status-profile_sent">Profile Sent</span>
                 <div class="card-note">Follow-up sent March 15 (36+ hours). Waiting for Amel to confirm eligibility. Calendly link available once confirmed.</div>
-                <a class="card-link" href="https://streeteasy.com/rental/4970215" target="_blank">View on StreetEasy</a>
+                <div class="card-links">
+                    <a class="card-link" href="https://streeteasy.com/rental/4970215" target="_blank">StreetEasy</a>
+                    <a class="card-link calendly-link" href="https://calendly.com/amel-kole/30min" target="_blank">Schedule Tour</a>
+                </div>
             </div>
         </div>
 
