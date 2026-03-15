@@ -440,10 +440,10 @@
             All <span class="seg-badge">5</span>
         </button>
         <button class="seg-btn" data-filter="visit" onclick="filterCards('visit', this)">
-            Visit <span class="seg-badge">2</span>
+            Visit <span class="seg-badge">1</span>
         </button>
-        <button class="seg-btn" data-filter="profile_sent" onclick="filterCards('profile_sent', this)">
-            Pending <span class="seg-badge">3</span>
+        <button class="seg-btn" data-filter="pending" onclick="filterCards('pending', this)">
+            Pending <span class="seg-badge">4</span>
         </button>
         <button class="seg-btn" data-filter="waiting_for_agent" onclick="filterCards('waiting_for_agent', this)">
             Waiting <span class="seg-badge">0</span>
@@ -481,10 +481,10 @@
             </div>
         </div>
 
-        <!-- Card 2: Sky High Realty — ELIGIBLE (Insurent confirmed) -->
+        <!-- Card 2: Sky High Realty — ELIGIBLE (Insurent confirmed, waiting for Liel) -->
         <div class="card" data-status="eligible">
             <div class="card-image img-bedsty">
-                <span class="status-dot dot-green">Eligible</span>
+                <span class="status-dot dot-yellow">Eligible</span>
                 <span class="neighborhood-label">Bedford-Stuyvesant</span>
             </div>
             <div class="card-body">
@@ -498,11 +498,8 @@
                 <div class="card-agent">
                     Agent: Olivia L | Sky High Realty NYC
                 </div>
-                <span class="status-badge status-eligible">Eligible</span>
-                <div class="card-visit">
-                    Proposed: Monday, March 16 at 3:15 PM
-                    <div class="visit-details">Also interested: 1584 Fulton ($2,708 net), 1534 Putnam ($3,200)</div>
-                </div>
+                <span class="status-badge status-eligible">Eligible — Waiting for Liel</span>
+                <div class="card-note">Insurent confirmed. Also: 1584 Fulton ($2,708 net), 1534 Putnam ($3,200)</div>
                 <a class="card-link" href="mailto:rentals@skyhighrealtynyc.com" target="_blank">Contact Agent</a>
             </div>
         </div>
@@ -631,16 +628,17 @@
             } else if (filter === 'visit') {
                 cards.forEach(function(c) {
                     var s = c.getAttribute('data-status');
-                    if (s === 'visit_scheduled' || s === 'eligible') {
+                    if (s === 'visit_scheduled') {
                         c.classList.remove('hidden');
                     } else {
                         c.classList.add('hidden');
                     }
                 });
                 rentedSection.style.display = 'none';
-            } else {
+            } else if (filter === 'pending') {
                 cards.forEach(function(c) {
-                    if (c.getAttribute('data-status') === filter) {
+                    var s = c.getAttribute('data-status');
+                    if (s === 'profile_sent' || s === 'eligible') {
                         c.classList.remove('hidden');
                     } else {
                         c.classList.add('hidden');
