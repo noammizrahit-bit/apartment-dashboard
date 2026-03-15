@@ -82,14 +82,41 @@
         }
         .card-image {
             width: 100%;
-            height: 180px;
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            height: 160px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-size: 48px;
+            align-items: flex-end;
+            justify-content: flex-start;
+            padding: 16px;
+            position: relative;
+            overflow: hidden;
         }
+        .card-image .neighborhood-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.9);
+            background: rgba(0,0,0,0.35);
+            padding: 4px 10px;
+            border-radius: 6px;
+            backdrop-filter: blur(4px);
+            z-index: 2;
+        }
+        .card-image svg {
+            position: absolute;
+            right: 16px;
+            bottom: 12px;
+            opacity: 0.15;
+            z-index: 1;
+        }
+        /* Neighborhood themes */
+        .img-bedsty { background: linear-gradient(135deg, #92400e 0%, #b45309 40%, #d97706 100%); }
+        .img-downtown { background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 40%, #0ea5e9 100%); }
+        .img-uws { background: linear-gradient(135deg, #064e3b 0%, #047857 40%, #10b981 100%); }
+        .img-manhattan-valley { background: linear-gradient(135deg, #312e81 0%, #4338ca 40%, #6366f1 100%); }
+        .img-brooklyn-multi { background: linear-gradient(135deg, #7c2d12 0%, #c2410c 40%, #f97316 100%); }
+        .img-rented { background: linear-gradient(135deg, #1c1917 0%, #292524 40%, #44403c 100%); }
+
         .card-body {
             padding: 20px;
             flex: 1;
@@ -212,7 +239,7 @@
     <div class="header">
         <h1>Apartment Search Dashboard</h1>
         <div class="subtitle">Noam and Liel | NYC Apartment Hunt</div>
-        <div class="subtitle" style="margin-top: 4px;">Last updated: March 15, 2026 1:10 AM</div>
+        <div class="subtitle" style="margin-top: 4px;">Last updated: March 15, 2026 1:15 AM</div>
     </div>
 
     <div class="stats">
@@ -242,10 +269,13 @@
 
         <!-- Card 1: 11 Herkimer Street #6D — VISIT SCHEDULED -->
         <div class="card">
-            <div class="card-image">🏠</div>
+            <div class="card-image img-bedsty">
+                <span class="neighborhood-label">Bedford-Stuyvesant</span>
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="white"><path d="M12 3L4 9v12h16V9l-8-6zm0 2.236L18 9.67V19H6V9.67l6-4.434zM8 13h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2zM8 16h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
+            </div>
             <div class="card-body">
                 <div class="card-address">11 Herkimer Street #6D</div>
-                <div class="card-neighborhood">Bedford-Stuyvesant</div>
+                <div class="card-neighborhood">Bedford-Stuyvesant, Brooklyn</div>
                 <div class="card-details">
                     <span class="card-price">$3,750/mo</span>
                     <span class="card-beds">1 Bed</span>
@@ -263,10 +293,13 @@
 
         <!-- Card 2: 88 Fulton Street #703 — PROFILE SENT -->
         <div class="card">
-            <div class="card-image">🏢</div>
+            <div class="card-image img-downtown">
+                <span class="neighborhood-label">Fulton / Seaport</span>
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="white"><path d="M3 21h18v-2H3v2zM5 13v6h4v-6H5zm6 0v6h4v-6h-4zm6 0v6h4v-6h-4zM3 9h2V3h4v6h2V3h4v6h2V3h4v6h2v2H3V9z"/></svg>
+            </div>
             <div class="card-body">
                 <div class="card-address">88 Fulton Street #703</div>
-                <div class="card-neighborhood">Fulton/Seaport</div>
+                <div class="card-neighborhood">Fulton/Seaport, Manhattan</div>
                 <div class="card-details">
                     <span class="card-price">$3,700/mo</span>
                     <span class="card-beds">1 Bed</span>
@@ -279,10 +312,12 @@
             </div>
         </div>
 
-
-        <!-- Card 3: Olivia / Sky High Realty — RE-ENGAGED, PROFILE SENT -->
+        <!-- Card 3: Olivia / Sky High Realty — PROFILE SENT -->
         <div class="card">
-            <div class="card-image">🏢</div>
+            <div class="card-image img-brooklyn-multi">
+                <span class="neighborhood-label">Bed-Stuy / Bushwick / Crown Heights</span>
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="white"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>
+            </div>
             <div class="card-body">
                 <div class="card-address">Sky High Realty Units</div>
                 <div class="card-neighborhood">Bed-Stuy / Bushwick / Crown Heights</div>
@@ -293,16 +328,19 @@
                 </div>
                 <div class="card-agent">Agent: Olivia L | Sky High Realty NYC</div>
                 <span class="status-badge status-profile_sent">Profile Sent</span>
-                <div class="card-note">Re-engaged. Asked if Insurent accepted. Interested in: 637 Franklin ($3K), 1534 Putnam ($3.2K), 1584 Fulton ($2,708 net). 11 units available.</div>
+                <div class="card-note">Olivia proposed viewing Sunday 2:15pm but conflicts with Herkimer. Still waiting on Insurent eligibility confirmation. 11 units available.</div>
             </div>
         </div>
 
         <!-- Card 4: 240 West 104th Street #21A — WAITING FOR AGENT -->
         <div class="card">
-            <div class="card-image">🏢</div>
+            <div class="card-image img-uws">
+                <span class="neighborhood-label">Upper West Side</span>
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="white"><path d="M12 3L4 9v12h16V9l-8-6zm0 2.236L18 9.67V19H6V9.67l6-4.434zM8 13h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2zM8 16h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
+            </div>
             <div class="card-body">
                 <div class="card-address">240 West 104th Street #21A</div>
-                <div class="card-neighborhood">Upper West Side</div>
+                <div class="card-neighborhood">Upper West Side, Manhattan</div>
                 <div class="card-details">
                     <span class="card-price">$2,800/mo</span>
                     <span class="card-beds">1 Bed</span>
@@ -317,10 +355,13 @@
 
         <!-- Card 5: 250 West 105th Street #6F — PROFILE SENT -->
         <div class="card">
-            <div class="card-image">🏢</div>
+            <div class="card-image img-uws">
+                <span class="neighborhood-label">Upper West Side</span>
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="white"><path d="M12 3L4 9v12h16V9l-8-6zm0 2.236L18 9.67V19H6V9.67l6-4.434zM8 13h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2zM8 16h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
+            </div>
             <div class="card-body">
                 <div class="card-address">250 West 105th Street #6F</div>
-                <div class="card-neighborhood">Upper West Side</div>
+                <div class="card-neighborhood">Upper West Side, Manhattan</div>
                 <div class="card-details">
                     <span class="card-price">$3,295/mo</span>
                     <span class="card-beds">1 Bed</span>
@@ -341,10 +382,13 @@
         <div class="apartments" style="max-width: 1200px; margin: 0 auto;">
         <!-- Card 6: 215 West 101st Street #10/C — RENTED -->
         <div class="card">
-            <div class="card-image">🏢</div>
+            <div class="card-image img-rented">
+                <span class="neighborhood-label">Manhattan Valley</span>
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="white"><path d="M12 3L4 9v12h16V9l-8-6zm0 2.236L18 9.67V19H6V9.67l6-4.434zM8 13h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2zM8 16h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
+            </div>
             <div class="card-body">
                 <div class="card-address">215 West 101st Street #10/C</div>
-                <div class="card-neighborhood">Manhattan Valley</div>
+                <div class="card-neighborhood">Manhattan Valley, Manhattan</div>
                 <div class="card-details">
                     <span class="card-price">$3,800/mo</span>
                     <span class="card-beds">1 Bed</span>
@@ -353,10 +397,10 @@
                 <div class="card-agent">Agent: Aaron Lunzer | Vector New York LLC</div>
                 <span class="status-badge status-rented">Rented</span>
                 <div class="card-note">Deposit already placed by someone else. Agent offered off-market units — replied with profile.</div>
+                <a class="card-link" href="https://streeteasy.com/rental/4968740" target="_blank">View on StreetEasy</a>
             </div>
         </div>
         </div>
-
     </div>
 
     <div class="footer">
