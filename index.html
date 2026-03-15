@@ -74,6 +74,7 @@
         .stat-card.pending .number { color: #fbbf24; }
         .stat-card.waiting .number { color: #7c8db5; }
         .stat-card.rented-stat .number { color: #f87171; }
+        .stat-card.on-hold-stat .number { color: #64748b; }
         /* Apartments Grid */
         .apartments {
             display: grid;
@@ -352,6 +353,10 @@
             <div class="number">1</div>
             <div class="label">Rented</div>
         </div>
+        <div class="stat-card on-hold-stat" data-filter="on_hold" onclick="filterCards('on_hold', this)">
+            <div class="number">1</div>
+            <div class="label">On Hold</div>
+        </div>
     </div>
 
     <div class="apartments" id="apartmentGrid">
@@ -453,7 +458,7 @@
     </div>
 
     <!-- RENTED SECTION -->
-    <div id="rentedSection">
+    <div id="rentedSection" style="display: none;">
         <div class="section-header">
             <h2>Rented / No Longer Available</h2>
         </div>
@@ -528,6 +533,10 @@
             } else if (filter === 'rented') {
                 cards.forEach(function(c) { c.classList.add('hidden'); });
                 rentedSection.style.display = 'block';
+                onHoldSection.style.display = 'none';
+            } else if (filter === 'on_hold') {
+                cards.forEach(function(c) { c.classList.add('hidden'); });
+                rentedSection.style.display = 'none';
                 onHoldSection.style.display = 'block';
             } else {
                 cards.forEach(function(c) {
