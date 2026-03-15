@@ -12,58 +12,73 @@
             background: #0f172a;
             color: #e2e8f0;
             min-height: 100vh;
-            padding: 24px;
+            padding: 20px;
         }
         .header {
             text-align: center;
-            margin-bottom: 32px;
-            padding-bottom: 24px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
             border-bottom: 1px solid #1e293b;
         }
         .header h1 {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             color: #f8fafc;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .header .subtitle {
             color: #94a3b8;
-            font-size: 14px;
+            font-size: 13px;
         }
+        /* Stats / Filter Bar */
         .stats {
             display: flex;
-            gap: 16px;
+            gap: 10px;
             justify-content: center;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             flex-wrap: wrap;
         }
         .stat-card {
             background: #1e293b;
             border-radius: 12px;
-            padding: 16px 24px;
+            padding: 12px 20px;
             text-align: center;
-            min-width: 140px;
+            min-width: 110px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .stat-card:hover {
+            border-color: #475569;
+            transform: translateY(-1px);
+        }
+        .stat-card.active {
+            border-color: #38bdf8;
+            background: #172554;
         }
         .stat-card .number {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             color: #f8fafc;
         }
         .stat-card .label {
-            font-size: 12px;
+            font-size: 11px;
             color: #94a3b8;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 4px;
+            margin-top: 2px;
         }
         .stat-card.visit .number { color: #34d399; }
-        .stat-card.eligible .number { color: #4ade80; }
         .stat-card.pending .number { color: #fbbf24; }
-        .stat-card.rejected .number { color: #f87171; }
+        .stat-card.waiting .number { color: #7c8db5; }
+        .stat-card.rented-stat .number { color: #f87171; }
+        /* Apartments Grid */
         .apartments {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 16px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -71,7 +86,7 @@
             background: #1e293b;
             border-radius: 16px;
             overflow: hidden;
-            transition: transform 0.2s;
+            transition: transform 0.2s, opacity 0.3s;
             border: 1px solid #334155;
             display: flex;
             flex-direction: column;
@@ -80,25 +95,28 @@
             transform: translateY(-2px);
             border-color: #475569;
         }
+        .card.hidden {
+            display: none;
+        }
         .card-image {
             width: 100%;
-            height: 200px;
+            height: 180px;
             display: flex;
             align-items: flex-end;
             justify-content: flex-start;
-            padding: 16px;
+            padding: 14px;
             position: relative;
             overflow: hidden;
             background-size: cover;
             background-position: center;
         }
         .card-image .neighborhood-label {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: rgba(255,255,255,0.9);
-            background: rgba(0,0,0,0.35);
+            background: rgba(0,0,0,0.4);
             padding: 4px 10px;
             border-radius: 6px;
             backdrop-filter: blur(4px);
@@ -111,40 +129,38 @@
             opacity: 0.15;
             z-index: 1;
         }
-        /* Neighborhood themes */
+        /* Neighborhood gradient fallbacks */
         .img-bedsty { background: linear-gradient(135deg, #92400e 0%, #b45309 40%, #d97706 100%); }
         .img-downtown { background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 40%, #0ea5e9 100%); }
         .img-uws { background: linear-gradient(135deg, #064e3b 0%, #047857 40%, #10b981 100%); }
         .img-manhattan-valley { background: linear-gradient(135deg, #312e81 0%, #4338ca 40%, #6366f1 100%); }
-        .img-brooklyn-multi { background: linear-gradient(135deg, #7c2d12 0%, #c2410c 40%, #f97316 100%); }
         .img-rented { background: linear-gradient(135deg, #1c1917 0%, #292524 40%, #44403c 100%); }
-
         .card-body {
-            padding: 20px;
+            padding: 16px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
         .card-address {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 600;
             color: #f8fafc;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
         .card-neighborhood {
-            font-size: 13px;
+            font-size: 12px;
             color: #94a3b8;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .card-details {
             display: flex;
-            gap: 16px;
-            margin-bottom: 16px;
+            gap: 14px;
+            margin-bottom: 12px;
             font-size: 14px;
             align-items: baseline;
         }
         .card-price {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             color: #38bdf8;
         }
@@ -152,17 +168,40 @@
             color: #cbd5e1;
         }
         .card-agent {
-            font-size: 13px;
+            font-size: 12px;
             color: #94a3b8;
-            margin-bottom: 16px;
-            padding-bottom: 16px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
             border-bottom: 1px solid #334155;
+            line-height: 1.5;
+        }
+        .card-agent a {
+            color: #94a3b8;
+            text-decoration: none;
+        }
+        .card-agent a:hover {
+            color: #38bdf8;
+        }
+        .agent-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+        .agent-phone a {
+            color: #64748b;
+            text-decoration: none;
+        }
+        .agent-phone a:hover {
+            color: #38bdf8;
         }
         .status-badge {
             display: inline-block;
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -171,31 +210,31 @@
         .status-new { background: #1e3a5f; color: #38bdf8; }
         .status-profile_sent { background: #422006; color: #fbbf24; }
         .status-eligible { background: #052e16; color: #4ade80; }
-        .status-asked_responsible_party { background: #451a03; color: #fb923c; }
-        .status-scheduling { background: #2e1065; color: #a78bfa; }
-        .status-liel_responded { background: #1e1b4b; color: #818cf8; }
         .status-visit_scheduled { background: #022c22; color: #34d399; }
-        .status-rejected { background: #1c1917; color: #a8a29e; }
         .status-rented { background: #1a0a0a; color: #ef4444; }
-        .rented-section {
-            margin-top: 40px;
-            padding-top: 24px;
+        .status-on_hold { background: #1e293b; color: #64748b; }
+        /* Rented section */
+        .section-header {
+            margin-top: 32px;
+            padding-top: 20px;
             border-top: 1px solid #1e293b;
-        }
-        .rented-section h2 {
-            color: #ef4444;
-            font-size: 18px;
-            margin-bottom: 16px;
             text-align: center;
+            margin-bottom: 16px;
         }
-        .rented-section .card {
+        .section-header h2 {
+            font-size: 16px;
+            color: #ef4444;
+        }
+        .rented-card {
             opacity: 0.6;
         }
-        .status-no_response { background: #1e293b; color: #64748b; }
+        .on-hold-section .section-header h2 {
+            color: #64748b;
+        }
         .card-link {
             display: block;
             margin-top: auto;
-            padding: 10px 0;
+            padding: 9px 0;
             color: #38bdf8;
             text-decoration: none;
             font-size: 13px;
@@ -205,35 +244,67 @@
             border-radius: 10px;
             transition: background 0.2s;
         }
-        .card-link:hover { background: #264b73; text-decoration: none; }
+        .card-link:hover { background: #264b73; }
         .card-note {
-            margin-top: 10px;
-            font-size: 12px;
+            margin-top: 8px;
+            font-size: 11px;
             color: #94a3b8;
             font-style: italic;
+            line-height: 1.4;
         }
         .card-visit {
-            margin-top: 10px;
-            padding: 10px 14px;
+            margin-top: 8px;
+            padding: 8px 12px;
             background: #022c22;
             border-radius: 10px;
-            font-size: 14px;
+            font-size: 13px;
             color: #34d399;
             font-weight: 600;
         }
         .card-visit .visit-details {
             font-weight: 400;
-            font-size: 12px;
+            font-size: 11px;
             color: #6ee7b7;
-            margin-top: 4px;
+            margin-top: 3px;
         }
         .footer {
             text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
+            margin-top: 32px;
+            padding-top: 16px;
             border-top: 1px solid #1e293b;
             color: #475569;
-            font-size: 12px;
+            font-size: 11px;
+        }
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            .header { margin-bottom: 16px; padding-bottom: 16px; }
+            .header h1 { font-size: 20px; }
+            .stats { gap: 8px; margin-bottom: 16px; }
+            .stat-card {
+                padding: 10px 14px;
+                min-width: 0;
+                flex: 1;
+                min-width: 80px;
+            }
+            .stat-card .number { font-size: 22px; }
+            .stat-card .label { font-size: 9px; letter-spacing: 0.5px; }
+            .apartments {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .card-image { height: 160px; }
+            .card-body { padding: 14px; }
+            .card-address { font-size: 16px; }
+            .card-price { font-size: 18px; }
+            .card-details { gap: 10px; margin-bottom: 10px; }
+        }
+        @media (max-width: 400px) {
+            body { padding: 8px; }
+            .stats { gap: 6px; }
+            .stat-card { padding: 8px 10px; }
+            .stat-card .number { font-size: 20px; }
+            .card-image { height: 140px; padding: 10px; }
         }
     </style>
 </head>
@@ -241,27 +312,27 @@
     <div class="header">
         <h1>Apartment Search Dashboard</h1>
         <div class="subtitle">Noam and Liel | NYC Apartment Hunt</div>
-        <div class="subtitle" style="margin-top: 4px;">Last updated: March 15, 2026 1:20 PM</div>
+        <div class="subtitle" style="margin-top: 4px;">Last updated: March 15, 2026 2:35 PM</div>
     </div>
 
-    <div class="stats">
-        <div class="stat-card">
-            <div class="number">6</div>
+    <div class="stats" id="filterBar">
+        <div class="stat-card active" data-filter="all" onclick="filterCards('all', this)">
+            <div class="number">4</div>
             <div class="label">Total</div>
         </div>
-        <div class="stat-card eligible">
+        <div class="stat-card visit" data-filter="visit_scheduled" onclick="filterCards('visit_scheduled', this)">
             <div class="number">1</div>
-            <div class="label">Eligible</div>
+            <div class="label">Visit</div>
         </div>
-        <div class="stat-card pending">
-            <div class="number">3</div>
+        <div class="stat-card pending" data-filter="profile_sent" onclick="filterCards('profile_sent', this)">
+            <div class="number">2</div>
             <div class="label">Pending</div>
         </div>
-        <div class="stat-card" style="opacity: 0.7;">
-            <div class="number" style="color: #7c8db5;">1</div>
-            <div class="label">Waiting for Agent</div>
+        <div class="stat-card waiting" data-filter="waiting_for_agent" onclick="filterCards('waiting_for_agent', this)">
+            <div class="number">1</div>
+            <div class="label">Waiting</div>
         </div>
-        <div class="stat-card rejected">
+        <div class="stat-card rented-stat" data-filter="rented" onclick="filterCards('rented', this)">
             <div class="number">1</div>
             <div class="label">Rented</div>
         </div>
@@ -270,7 +341,7 @@
     <div class="apartments" id="apartmentGrid">
 
         <!-- Card 1: 11 Herkimer Street #6D — VISIT SCHEDULED -->
-        <div class="card">
+        <div class="card" data-status="visit_scheduled">
             <div class="card-image" style="background-image: url('11-herkimer.webp');">
                 <span class="neighborhood-label">Bedford-Stuyvesant</span>
             </div>
@@ -282,7 +353,9 @@
                     <span class="card-beds">1 Bed</span>
                     <span class="card-baths">1 Bath</span>
                 </div>
-                <div class="card-agent">Agent: Mendel Paltiel | CITI CUBES INC</div>
+                <div class="card-agent">
+                    Agent: Mendel Paltiel | CITI CUBES INC
+                </div>
                 <span class="status-badge status-visit_scheduled">Visit Scheduled</span>
                 <div class="card-visit">
                     Sunday, March 15 at 2:00 PM EST
@@ -293,7 +366,7 @@
         </div>
 
         <!-- Card 2: 88 Fulton Street #703 — PROFILE SENT -->
-        <div class="card">
+        <div class="card" data-status="profile_sent">
             <div class="card-image" style="background-image: url('88-fulton.webp');">
                 <span class="neighborhood-label">Fulton / Seaport</span>
             </div>
@@ -305,35 +378,17 @@
                     <span class="card-beds">1 Bed</span>
                     <span class="card-baths">1 Bath</span>
                 </div>
-                <div class="card-agent">Agent: Amel Lukovic | Compass</div>
+                <div class="card-agent">
+                    Agent: Amel Lukovic | Compass
+                </div>
                 <span class="status-badge status-profile_sent">Profile Sent</span>
-                <div class="card-note">Profile sent March 13. Waiting for Amel to confirm eligibility. Calendly link available once confirmed.</div>
+                <div class="card-note">Follow-up sent March 15 (36+ hours). Waiting for Amel to confirm eligibility. Calendly link available once confirmed.</div>
                 <a class="card-link" href="https://streeteasy.com/rental/4970215" target="_blank">View on StreetEasy</a>
             </div>
         </div>
 
-        <!-- Card 3: Olivia / Sky High Realty — PROFILE SENT -->
-        <div class="card">
-            <div class="card-image img-brooklyn-multi">
-                <span class="neighborhood-label">Bed-Stuy / Bushwick / Crown Heights</span>
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="white"><path d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>
-            </div>
-            <div class="card-body">
-                <div class="card-address">Sky High Realty Units</div>
-                <div class="card-neighborhood">Bed-Stuy / Bushwick / Crown Heights</div>
-                <div class="card-details">
-                    <span class="card-price">$2,708-$3,300/mo</span>
-                    <span class="card-beds">1 Bed</span>
-                    <span class="card-baths">1 Bath</span>
-                </div>
-                <div class="card-agent">Agent: Olivia L | Sky High Realty NYC</div>
-                <span class="status-badge status-profile_sent">Profile Sent</span>
-                <div class="card-note">Olivia proposed viewing Sunday 2:15pm but conflicts with Herkimer. Still waiting on Insurent eligibility confirmation. 11 units available.</div>
-            </div>
-        </div>
-
-        <!-- Card 4: 240 West 104th Street #21A — WAITING FOR AGENT -->
-        <div class="card">
+        <!-- Card 3: 240 West 104th Street #21A — WAITING FOR AGENT -->
+        <div class="card" data-status="waiting_for_agent">
             <div class="card-image" style="background-image: url('240-w-104th.webp');">
                 <span class="neighborhood-label">Upper West Side</span>
             </div>
@@ -345,15 +400,17 @@
                     <span class="card-beds">1 Bed</span>
                     <span class="card-baths">1 Bath</span>
                 </div>
-                <div class="card-agent">Agent: Ezamina Ramusevic | Sovereign Associates</div>
+                <div class="card-agent">
+                    Agent: Ezamina Ramusevic | Sovereign Associates
+                </div>
                 <span class="status-badge status-waiting_for_agent">Waiting for Agent</span>
-                <div class="card-note">StreetEasy inquiry sent March 13. Waiting for agent to respond.</div>
+                <div class="card-note">StreetEasy inquiry sent March 13. No response yet (36+ hours). No direct email available.</div>
                 <a class="card-link" href="https://streeteasy.com/rental/4980608" target="_blank">View on StreetEasy</a>
             </div>
         </div>
 
-        <!-- Card 5: 250 West 105th Street #6F — PROFILE SENT -->
-        <div class="card">
+        <!-- Card 4: 250 West 105th Street #6F — PROFILE SENT -->
+        <div class="card" data-status="profile_sent">
             <div class="card-image" style="background-image: url('250-w-105th.webp');">
                 <span class="neighborhood-label">Upper West Side</span>
             </div>
@@ -365,9 +422,12 @@
                     <span class="card-beds">1 Bed</span>
                     <span class="card-baths">1 Bath</span>
                 </div>
-                <div class="card-agent">Agent: Jason Zeller | Corcoran</div>
+                <div class="card-agent">
+                    Agent: Jason Zeller | Corcoran
+                    <div class="agent-phone"><a href="tel:+16313970864">631-397-0864</a></div>
+                </div>
                 <span class="status-badge status-profile_sent">Profile Sent</span>
-                <div class="card-note">Agent replied within 9 minutes! Profile sent March 14. Waiting for eligibility confirmation. Colleague Tyler Siamas handles scheduling.</div>
+                <div class="card-note">Agent replied within 9 minutes! Profile sent March 14. Waiting for eligibility confirmation. CC Tyler Siamas for scheduling.</div>
                 <a class="card-link" href="https://streeteasy.com/rental/4972228" target="_blank">View on StreetEasy</a>
             </div>
         </div>
@@ -375,33 +435,96 @@
     </div>
 
     <!-- RENTED SECTION -->
-    <div class="rented-section">
-        <h2>Rented / No Longer Available</h2>
+    <div id="rentedSection">
+        <div class="section-header">
+            <h2>Rented / No Longer Available</h2>
+        </div>
         <div class="apartments" style="max-width: 1200px; margin: 0 auto;">
-        <!-- Card 6: 215 West 101st Street #10/C — RENTED -->
-        <div class="card">
-            <div class="card-image" style="background-image: url('215-w-101st.webp'); filter: grayscale(0.6);">
-                <span class="neighborhood-label">Manhattan Valley</span>
-            </div>
-            <div class="card-body">
-                <div class="card-address">215 West 101st Street #10/C</div>
-                <div class="card-neighborhood">Manhattan Valley, Manhattan</div>
-                <div class="card-details">
-                    <span class="card-price">$3,800/mo</span>
-                    <span class="card-beds">1 Bed</span>
-                    <span class="card-baths">1 Bath</span>
+            <!-- Card 5: 215 West 101st Street #10/C — RENTED -->
+            <div class="card rented-card" data-status="rented">
+                <div class="card-image" style="background-image: url('215-w-101st.webp'); filter: grayscale(0.6);">
+                    <span class="neighborhood-label">Manhattan Valley</span>
                 </div>
-                <div class="card-agent">Agent: Aaron Lunzer | Vector New York LLC</div>
-                <span class="status-badge status-rented">Rented</span>
-                <div class="card-note">Deposit already placed by someone else. Agent offered off-market units — replied with profile.</div>
-                <a class="card-link" href="https://streeteasy.com/rental/4968740" target="_blank">View on StreetEasy</a>
+                <div class="card-body">
+                    <div class="card-address">215 West 101st Street #10/C</div>
+                    <div class="card-neighborhood">Manhattan Valley, Manhattan</div>
+                    <div class="card-details">
+                        <span class="card-price" style="color: #94a3b8; text-decoration: line-through;">$3,800/mo</span>
+                        <span class="card-beds">1 Bed</span>
+                        <span class="card-baths">1 Bath</span>
+                    </div>
+                    <div class="card-agent">
+                        Agent: Aaron Lunzer | Vector New York LLC
+                        <div class="agent-phone"><a href="tel:+16467372274">646-737-2274</a></div>
+                    </div>
+                    <span class="status-badge status-rented">Rented</span>
+                    <div class="card-note">Deposit placed by someone else. Agent offered off-market units in Manhattan Valley. Replied with profile.</div>
+                    <a class="card-link" href="https://streeteasy.com/rental/4968740" target="_blank">View on StreetEasy</a>
+                </div>
             </div>
         </div>
+    </div>
+
+    <!-- ON HOLD SECTION -->
+    <div class="on-hold-section" id="onHoldSection" style="display: none;">
+        <div class="section-header">
+            <h2 style="color: #64748b;">On Hold</h2>
+        </div>
+        <div class="apartments" style="max-width: 1200px; margin: 0 auto;">
+            <div class="card rented-card" data-status="on_hold">
+                <div class="card-image img-bedsty" style="filter: grayscale(0.8);">
+                    <span class="neighborhood-label">Bed-Stuy / Bushwick</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-address">Sky High Realty Units</div>
+                    <div class="card-neighborhood">Bed-Stuy / Bushwick / Crown Heights</div>
+                    <div class="card-details">
+                        <span class="card-price" style="color: #64748b;">$2,708-$3,300/mo</span>
+                        <span class="card-beds">1 Bed</span>
+                        <span class="card-baths">1 Bath</span>
+                    </div>
+                    <div class="card-agent">Agent: Olivia L | Sky High Realty NYC</div>
+                    <span class="status-badge status-on_hold">On Hold</span>
+                    <div class="card-note">Waiting for Insurent eligibility confirmation before proceeding. 11 units available.</div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="footer">
         Auto-refreshes every 15 minutes | Powered by Claude
     </div>
+
+    <script>
+        function filterCards(filter, el) {
+            // Update active stat card
+            document.querySelectorAll('.stat-card').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+
+            var cards = document.querySelectorAll('#apartmentGrid .card');
+            var rentedSection = document.getElementById('rentedSection');
+            var onHoldSection = document.getElementById('onHoldSection');
+
+            if (filter === 'all') {
+                cards.forEach(function(c) { c.classList.remove('hidden'); });
+                rentedSection.style.display = 'none';
+                onHoldSection.style.display = 'none';
+            } else if (filter === 'rented') {
+                cards.forEach(function(c) { c.classList.add('hidden'); });
+                rentedSection.style.display = 'block';
+                onHoldSection.style.display = 'block';
+            } else {
+                cards.forEach(function(c) {
+                    if (c.getAttribute('data-status') === filter) {
+                        c.classList.remove('hidden');
+                    } else {
+                        c.classList.add('hidden');
+                    }
+                });
+                rentedSection.style.display = 'none';
+                onHoldSection.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
