@@ -16,23 +16,29 @@
             padding: 24px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            background-image: url('https://images.unsplash.com/photo-1496588152823-86ff7695e68f?w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
         }
-        body::before {
-            content: '';
+        .bg-wrapper {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.65);
             z-index: 0;
+            background-image: url('https://images.unsplash.com/photo-1640349672047-16d70866b852?w=3840&q=85');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
         }
-        body > * {
+        .bg-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+        }
+        body > *:not(.bg-wrapper) {
             position: relative;
             z-index: 1;
         }
@@ -515,6 +521,7 @@
     </style>
 </head>
 <body>
+    <div class="bg-wrapper"></div>
     <div class="header">
         <h1>Apartment Search</h1>
         <div class="subtitle">Noam and Liel | NYC</div>
