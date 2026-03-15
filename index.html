@@ -403,17 +403,18 @@
         /* ─── Borough Section Headers ─── */
         .borough-header {
             max-width: 1200px;
-            margin: 0 auto 16px auto;
-            padding-top: 8px;
+            margin: 0 auto 20px auto;
+            padding-top: 12px;
+            text-align: center;
         }
-        .borough-header:not(:first-child) {
-            margin-top: 36px;
+        .borough-header + .apartments + .borough-header {
+            margin-top: 48px;
         }
         .borough-header h2 {
-            font-size: 22px;
-            font-weight: 600;
+            font-size: 34px;
+            font-weight: 700;
             color: #f5f5f7;
-            letter-spacing: -0.3px;
+            letter-spacing: -0.5px;
         }
 
         /* ─── Rented / Other Section Headers ─── */
@@ -473,6 +474,8 @@
             .card-address { font-size: 18px; }
             .card-price { font-size: 20px; }
             .card-details { gap: 12px; margin-bottom: 12px; }
+            .borough-header h2 { font-size: 26px; }
+            .borough-header + .apartments + .borough-header { margin-top: 36px; }
         }
         @media (max-width: 400px) {
             body { padding: 10px; }
@@ -540,7 +543,7 @@
 
         <!-- 645 Park Place #4I — WAITING FOR AGENT -->
         <div class="card" data-status="waiting_for_agent" data-borough="brooklyn">
-            <div class="card-image img-bedsty">
+            <div class="card-image" style="background-image: url('645-park-place.webp');">
                 <span class="status-dot dot-orange">Waiting</span>
                 <span class="neighborhood-label">Crown Heights</span>
             </div>
