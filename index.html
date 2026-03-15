@@ -89,6 +89,7 @@
             overflow: hidden;
             transition: transform 0.2s, opacity 0.3s;
             border: 1px solid #334155;
+            border-left: 4px solid #334155;
             display: flex;
             flex-direction: column;
         }
@@ -96,6 +97,12 @@
             transform: translateY(-2px);
             border-color: #475569;
         }
+        /* Status color strips */
+        .card[data-status="visit_scheduled"],
+        .card[data-status="eligible"] { border-left-color: #34d399; }
+        .card[data-status="profile_sent"] { border-left-color: #fbbf24; }
+        .card[data-status="new"] { border-left-color: #38bdf8; }
+        .card[data-status="waiting_for_agent"] { border-left-color: #f97316; }
         .card.hidden {
             display: none;
         }
