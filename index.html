@@ -483,10 +483,10 @@
 
     <div class="apartments" id="apartmentGrid">
 
-        <!-- Card 1: 11 Herkimer Street #6D — VISIT SCHEDULED -->
-        <div class="card" data-status="visit_scheduled">
+        <!-- Card 1: 11 Herkimer Street #6D — VISITED, Liel loved it! -->
+        <div class="card" data-status="visited">
             <div class="card-image" style="background-image: url('11-herkimer.webp');">
-                <span class="status-dot dot-green">Confirmed</span>
+                <span class="status-dot dot-green">Visited</span>
                 <span class="neighborhood-label">Bedford-Stuyvesant</span>
             </div>
             <div class="card-body">
@@ -501,8 +501,8 @@
                     Agent: Mendel Paltiel | CITI CUBES INC
                     <div class="agent-phone"><a href="tel:+13479156887">347-915-6887</a></div>
                 </div>
-                <div class="card-visit">
-                    ✅ Confirmed — Sunday, March 15 at 2:00 PM
+                <div class="card-visit" style="background: rgba(255,55,95,0.08); color: #ff375f;">
+                    ❤️ Liel Loved It! &nbsp;👁️ Visited
                 </div>
                 <a class="card-link" href="https://streeteasy.com/building/11-herkimer/6d" target="_blank">View on StreetEasy</a>
             </div>
@@ -671,7 +671,7 @@
             } else if (filter === 'visit') {
                 cards.forEach(function(c) {
                     var s = c.getAttribute('data-status');
-                    if (s === 'visit_scheduled') {
+                    if (s === 'visit_scheduled' || s === 'visited') {
                         c.classList.remove('hidden');
                     } else {
                         c.classList.add('hidden');
