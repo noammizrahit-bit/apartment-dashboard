@@ -465,13 +465,13 @@
 
     <div class="segmented-control" id="filterBar">
         <button class="seg-btn active" data-filter="all" onclick="filterCards('all', this)">
-            All <span class="seg-badge">5</span>
+            All <span class="seg-badge">6</span>
         </button>
         <button class="seg-btn" data-filter="visit" onclick="filterCards('visit', this)">
             Visit <span class="seg-badge">1</span>
         </button>
         <button class="seg-btn" data-filter="pending" onclick="filterCards('pending', this)">
-            Pending <span class="seg-badge">4</span>
+            Pending <span class="seg-badge">5</span>
         </button>
         <button class="seg-btn" data-filter="waiting_for_agent" onclick="filterCards('waiting_for_agent', this)">
             Waiting <span class="seg-badge">0</span>
@@ -519,6 +519,27 @@
                 <div class="card-neighborhood">Bedford-Stuyvesant, Brooklyn</div>
                 <div class="card-details">
                     <span class="card-price">$3,000/mo</span>
+                    <span class="card-beds">1 Bed</span>
+                    <span class="card-baths">1 Bath</span>
+                </div>
+                <div class="card-agent">
+                    Agent: Olivia L | Sky High Realty NYC
+                </div>
+                <div class="btn-waiting-liel">⏳ Waiting for Liel's Approval</div>
+            </div>
+        </div>
+
+        <!-- Card 2b: 1584 Fulton Street #9A — ELIGIBLE (Sky High, waiting for Liel) -->
+        <div class="card" data-status="eligible">
+            <div class="card-image" style="background-image: url('1584-fulton.webp'); background-size: cover; background-position: center;">
+                <span class="status-dot dot-yellow">Eligible</span>
+                <span class="neighborhood-label">Bedford-Stuyvesant</span>
+            </div>
+            <div class="card-body">
+                <div class="card-address">1584 Fulton Street #9A</div>
+                <div class="card-neighborhood">Bedford-Stuyvesant, Brooklyn</div>
+                <div class="card-details">
+                    <span class="card-price">$2,708/mo</span>
                     <span class="card-beds">1 Bed</span>
                     <span class="card-baths">1 Bath</span>
                 </div>
