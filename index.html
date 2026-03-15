@@ -159,8 +159,8 @@
         .status-dot.dot-green::before { background: #34d399; box-shadow: 0 0 6px #34d39980; }
         .status-dot.dot-yellow { color: #fde68a; }
         .status-dot.dot-yellow::before { background: #fbbf24; box-shadow: 0 0 6px #fbbf2480; }
-        .status-dot.dot-blue { color: #7dd3fc; }
-        .status-dot.dot-blue::before { background: #38bdf8; box-shadow: 0 0 6px #38bdf880; }
+        .status-dot.dot-red { color: #fca5a5; }
+        .status-dot.dot-red::before { background: #ef4444; box-shadow: 0 0 6px #ef444480; }
         .status-dot.dot-orange { color: #fdba74; }
         .status-dot.dot-orange::before { background: #f97316; box-shadow: 0 0 6px #f9731680; }
         /* Neighborhood gradient fallbacks */
@@ -386,10 +386,6 @@
             <div class="number">1</div>
             <div class="label">Rented</div>
         </div>
-        <div class="stat-card on-hold-stat" data-filter="on_hold" onclick="filterCards('on_hold', this)">
-            <div class="number">1</div>
-            <div class="label">On Hold</div>
-        </div>
     </div>
 
     <div class="apartments" id="apartmentGrid">
@@ -446,30 +442,7 @@
             </div>
         </div>
 
-        <!-- Card 3: 240 West 104th Street #21A — NEW (Agent replied, profile draft pending) -->
-        <div class="card" data-status="new">
-            <div class="card-image" style="background-image: url('240-w-104th.webp');">
-                <span class="status-dot dot-blue">Replied</span>
-                <span class="neighborhood-label">Upper West Side</span>
-            </div>
-            <div class="card-body">
-                <div class="card-address">240 West 104th Street #21A</div>
-                <div class="card-neighborhood">Upper West Side, Manhattan</div>
-                <div class="card-details">
-                    <span class="card-price">$2,800/mo</span>
-                    <span class="card-beds">1 Bed</span>
-                    <span class="card-baths">1 Bath</span>
-                </div>
-                <div class="card-agent">
-                    Agent: Ezamina Ramusevic | Sovereign Realty NYC
-                    <div class="agent-phone"><a href="tel:+16465772568">646-577-2568</a></div>
-                </div>
-                <span class="status-badge status-new">Agent Replied</span>
-                <a class="card-link" href="https://streeteasy.com/rental/4980608" target="_blank">View on StreetEasy</a>
-            </div>
-        </div>
-
-        <!-- Card 4: 250 West 105th Street #6F — PROFILE SENT -->
+        <!-- Card 3: 250 West 105th Street #6F — PROFILE SENT -->
         <div class="card" data-status="profile_sent">
             <div class="card-image" style="background-image: url('250-w-105th.webp');">
                 <span class="status-dot dot-yellow">Pending</span>
@@ -489,6 +462,29 @@
                 </div>
                 <span class="status-badge status-profile_sent">Profile Sent</span>
                 <a class="card-link" href="https://streeteasy.com/rental/4972228" target="_blank">View on StreetEasy</a>
+            </div>
+        </div>
+
+        <!-- Card 4: 240 West 104th Street #21A — NEW (Agent replied, profile draft pending) -->
+        <div class="card" data-status="new">
+            <div class="card-image" style="background-image: url('240-w-104th.webp');">
+                <span class="status-dot dot-red">Replied</span>
+                <span class="neighborhood-label">Upper West Side</span>
+            </div>
+            <div class="card-body">
+                <div class="card-address">240 West 104th Street #21A</div>
+                <div class="card-neighborhood">Upper West Side, Manhattan</div>
+                <div class="card-details">
+                    <span class="card-price">$2,800/mo</span>
+                    <span class="card-beds">1 Bed</span>
+                    <span class="card-baths">1 Bath</span>
+                </div>
+                <div class="card-agent">
+                    Agent: Ezamina Ramusevic | Sovereign Realty NYC
+                    <div class="agent-phone"><a href="tel:+16465772568">646-577-2568</a></div>
+                </div>
+                <span class="status-badge status-new">Agent Replied</span>
+                <a class="card-link" href="https://streeteasy.com/rental/4980608" target="_blank">View on StreetEasy</a>
             </div>
         </div>
 
@@ -524,30 +520,7 @@
         </div>
     </div>
 
-    <!-- ON HOLD SECTION -->
-    <div class="on-hold-section" id="onHoldSection" style="display: none;">
-        <div class="section-header">
-            <h2 style="color: #64748b;">On Hold</h2>
-        </div>
-        <div class="apartments" style="max-width: 1200px; margin: 0 auto;">
-            <div class="card rented-card" data-status="on_hold">
-                <div class="card-image img-bedsty" style="filter: grayscale(0.8);">
-                    <span class="neighborhood-label">Bed-Stuy / Bushwick</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-address">Sky High Realty Units</div>
-                    <div class="card-neighborhood">Bed-Stuy / Bushwick / Crown Heights</div>
-                    <div class="card-details">
-                        <span class="card-price" style="color: #64748b;">$2,708-$3,300/mo</span>
-                        <span class="card-beds">1 Bed</span>
-                        <span class="card-baths">1 Bath</span>
-                    </div>
-                    <div class="card-agent">Agent: Olivia L | Sky High Realty NYC</div>
-                    <span class="status-badge status-on_hold">On Hold</span>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <div class="footer">
         Auto-refreshes every 15 minutes | Powered by Claude
@@ -561,20 +534,13 @@
 
             var cards = document.querySelectorAll('#apartmentGrid .card');
             var rentedSection = document.getElementById('rentedSection');
-            var onHoldSection = document.getElementById('onHoldSection');
 
             if (filter === 'all') {
                 cards.forEach(function(c) { c.classList.remove('hidden'); });
                 rentedSection.style.display = 'none';
-                onHoldSection.style.display = 'none';
             } else if (filter === 'rented') {
                 cards.forEach(function(c) { c.classList.add('hidden'); });
                 rentedSection.style.display = 'block';
-                onHoldSection.style.display = 'none';
-            } else if (filter === 'on_hold') {
-                cards.forEach(function(c) { c.classList.add('hidden'); });
-                rentedSection.style.display = 'none';
-                onHoldSection.style.display = 'block';
             } else {
                 cards.forEach(function(c) {
                     if (c.getAttribute('data-status') === filter) {
@@ -584,7 +550,6 @@
                     }
                 });
                 rentedSection.style.display = 'none';
-                onHoldSection.style.display = 'none';
             }
         }
     </script>
