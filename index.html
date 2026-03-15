@@ -362,6 +362,34 @@
             line-height: 1.4;
         }
 
+        /* ─── Animated "Waiting for Liel" Button ─── */
+        @keyframes lielPulse {
+            0% { box-shadow: 0 0 0 0 rgba(255,214,10,0.5); }
+            50% { box-shadow: 0 0 16px 6px rgba(255,214,10,0.25); }
+            100% { box-shadow: 0 0 0 0 rgba(255,214,10,0.5); }
+        }
+        .btn-waiting-liel {
+            display: block;
+            margin-top: auto;
+            padding: 13px 0;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            color: #1c1c1e;
+            background: linear-gradient(135deg, #ffd60a 0%, #ffcc02 100%);
+            border-radius: 980px;
+            text-decoration: none;
+            cursor: pointer;
+            animation: lielPulse 2s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+            transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .btn-waiting-liel:hover {
+            transform: scale(1.04);
+            animation: none;
+            box-shadow: 0 0 20px 8px rgba(255,214,10,0.3);
+        }
+
         /* ─── Rented Section ─── */
         .section-header {
             margin-top: 48px;
@@ -499,8 +527,7 @@
                     Agent: Olivia L | Sky High Realty NYC
                 </div>
                 <span class="status-badge status-eligible">Eligible — Waiting for Liel</span>
-                <div class="card-note">Insurent confirmed. Also: 1584 Fulton ($2,708 net), 1534 Putnam ($3,200)</div>
-                <a class="card-link" href="mailto:rentals@skyhighrealtynyc.com" target="_blank">Contact Agent</a>
+                <div class="btn-waiting-liel">⏳ Waiting for Liel's Approval</div>
             </div>
         </div>
 
